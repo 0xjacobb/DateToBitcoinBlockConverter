@@ -1,6 +1,10 @@
 # DateToBitcoinBlockConverter
+## Short Overview
 This code takes a specific date in UTC time format and convert it into a new time format, the Bitcoin block number. Becasue Bitcoin blocks are created every 10 minutes in avarage, the conversion is not very precice, but precice enough for some use cases.
 
+It's a flask app running on Heroku
+
+## Description
 The thread describes another issue with the "correct time conversion": [What format is the time of a Bitcoin transaction stored in?](https://bitcoin.stackexchange.com/questions/7788/what-format-is-the-time-of-a-bitcoin-transaction-stored-in#23681)
 
 "There are several things you could mean by the time of the transaction:"
@@ -14,8 +18,6 @@ This code does not care about any specific transactions in a block, but more whe
 # Status
 Setting up project
 
-# Overview
-
 # Project Structure
 ```bash
 DateToBitcoinBlockConverter
@@ -28,6 +30,7 @@ DateToBitcoinBlockConverter
     ├── xyz   
     │   └── xyz                        # TBD    
     ├── requirements.txt               # all needed dependencies created via: ' pip freeze > requirements.txt '
+    ├── runtime.txt                    # define python version for Heroku
 ```
 
 ## Running code local on your Mac
