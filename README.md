@@ -19,10 +19,17 @@ Setting up project
 # Project Structure
 ```bash
 DateToBitcoinBlockConverter
+    ├── app.py                         # Flask Web-App   
+    ├── converter.py                   # Main file which input and output for web-app
+    ├── data.csv                       # file which contains only time_stamp and block_height of all blocks
+    ├── Procfile                       # process file needed for Heroku deployment
     ├── README.md   
     ├── xyz   
     │   └── xyz                        # TBD    
-    ├── converter.py                   # main file
+    ├── requirements.txt               # all needed dependencies created via: ' pip freeze > requirements.txt '
 ```
-
+# Installation
+```bash
+pip install -r requirements.txt
+```
 
