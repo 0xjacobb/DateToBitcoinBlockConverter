@@ -19,6 +19,7 @@ Setting up project
 # Project Structure
 ```bash
 DateToBitcoinBlockConverter
+    ├── .gitignore                     # not tracked files by GIT  
     ├── app.py                         # Flask Web-App   
     ├── converter.py                   # Main file which input and output for web-app
     ├── data.csv                       # file which contains only time_stamp and block_height of all blocks
@@ -28,8 +29,29 @@ DateToBitcoinBlockConverter
     │   └── xyz                        # TBD    
     ├── requirements.txt               # all needed dependencies created via: ' pip freeze > requirements.txt '
 ```
-# Installation
-```bash
-pip install -r requirements.txt
-```
+
+## Running code local on your Mac
+### Installation of Heroku
+1. Install Heroku CLI [Link](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+3. Check if Heroku it installed with: ```heroku --version```
+4. Create an account on Heroku's website
+5. After account creation, run in Terminal: ```heroku login```
+
+### Make Code running locally
+1. Clone/ download repository
+2. cd into project folder
+
+in Terminal/ CMD:
+
+3. ```pip install virtualenv```   
+4. Create virtual environment: ```virtualenv env```
+5. Activate virtual environment:   
+For macOS: ```source env/bin/activate```   
+For Win: Copy in CMD:```"<PATH TO PROJECT>\env\Scripts\activate.bat"``` 
+6. Intall dependencies:   
+For macOS: ```pip3 install -r requirements.txt```   
+For Win: ```pip install -r requirements.txt```   
+7. Run app locally:
+For macOS: ```python3 app.py```   
+For Win: ```python app.py```
 
