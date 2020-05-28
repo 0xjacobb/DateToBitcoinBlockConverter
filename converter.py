@@ -8,6 +8,7 @@
 import datetime
 from pytz import timezone
 import pytz
+import csv
 
 class DateConverter():
     '''
@@ -48,10 +49,15 @@ class DateConverter():
         udt = checked_date_time.timestamp()
         return udt
 
-    def find_corresponding_block(self):
-        ''' search the closest block to the UTC data from user '''
+    def find_corresponding_block(self, unix_datetime):
+        ''' give back the closest block to the UTC datatime from user '''
         # Example: 1590492420 seconds = 2020-05-26 13:27:00
-
+        csv_file = csv.reader(open('block-data.csv'), delimiter=",")
+        uxd = str(unix_datetime)
+        for row in csv_file:
+            if uxd == row[0]:
+                return row[1]
+        return False
 
     def convert_date_to_block_number(self):
         ''' converts the block time to block number '''
@@ -70,6 +76,7 @@ if __name__ == "__main__":
         print("Is VALID")
         unix_datetime= datetime_to_block.convert_datetime_to_unix(checked_date_time)
         print(unix_datetime)
+        print(datetime_to_block.find_corresponding_block(1590659400))
         # AB HIER CODE UM BLOCK ZU FINDEN
         # datetime_to_block.find_corresponding_block()
         # datetime_to_block.convert_date_to_block_number()

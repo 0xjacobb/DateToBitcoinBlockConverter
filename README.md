@@ -2,7 +2,7 @@
 ## Short Overview
 This code takes a specific date in UTC time format and convert it into a new time format, the Bitcoin block number. Becasue Bitcoin blocks are created every 10 minutes in avarage, the conversion is not very precice, but precice enough for some use cases.
 
-It's a flask app running on Heroku
+It's a flask app running on Heroku: [https://datetime-converter-pro.herokuapp.com/?](https://datetime-converter-pro.herokuapp.com/) 
 
 ## Description
 The thread describes another issue with the "correct time conversion": [What format is the time of a Bitcoin transaction stored in?](https://bitcoin.stackexchange.com/questions/7788/what-format-is-the-time-of-a-bitcoin-transaction-stored-in#23681)
@@ -21,14 +21,15 @@ Setting up project
 # Project Structure
 ```bash
 DateToBitcoinBlockConverter
+    ├── templates                      # flask searching HTML files in this folder   
+    │   └── index.html                 # input site
+    │   └── result.html                # shows the corresponding block height  
     ├── .gitignore                     # not tracked files by GIT  
     ├── app.py                         # Flask Web-App   
+    ├── block-data.csv                 # file which contains only time_stamp and block_height of all blocks
     ├── converter.py                   # Main file which input and output for web-app
-    ├── data.csv                       # file which contains only time_stamp and block_height of all blocks
     ├── Procfile                       # process file needed for Heroku deployment
     ├── README.md   
-    ├── xyz   
-    │   └── xyz                        # TBD    
     ├── requirements.txt               # all needed dependencies created via: ' pip freeze > requirements.txt '
     ├── runtime.txt                    # define python version for Heroku
 ```
@@ -39,6 +40,7 @@ DateToBitcoinBlockConverter
 3. Check if Heroku it installed with: ```heroku --version```
 4. Create an account on Heroku's website
 5. After account creation, run in Terminal (maybe run it with admin rights): ```heroku login```
+6. Add and deploy app as described here: [Link](https://realpython.com/flask-by-example-part-1-project-setup/)
 
 ### Make Code running locally
 1. Clone/ download repository

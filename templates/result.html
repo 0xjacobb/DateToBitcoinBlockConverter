@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+   <body>
+      <table border = 0>
+        {{ block_height }} 
+         {% for item in block_height %}
+            <tr>
+                <th> {{ item }} </th>
+            </tr>
+        {% endfor %}
+      </table>
+   </body>
+</html>
