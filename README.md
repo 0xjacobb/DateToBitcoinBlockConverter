@@ -38,13 +38,13 @@ DateToBitcoinBlockConverter
 1. Install Heroku CLI [Link](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 3. Check if Heroku it installed with: ```heroku --version```
 4. Create an account on Heroku's website
-5. After account creation, run in Terminal: ```heroku login```
+5. After account creation, run in Terminal (maybe run it with admin rights): ```heroku login```
 
 ### Make Code running locally
 1. Clone/ download repository
 2. cd into project folder
 
-in Terminal/ CMD:
+in Terminal (Mac) or CMD (Win):
 
 3. ```pip install virtualenv```   
 4. Create virtual environment: ```virtualenv env```
