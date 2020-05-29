@@ -62,6 +62,7 @@ For Win: ```python app.py```
 
 # To Do
 - [x] First working code with test data
+- [ ] datetime conversion is not working correct (take local computer time instead of UTC)
 - [ ] Implement various time zone support (get picked by user)
 - [ ] Implement database
 - [ ] Use data base for query the nearest block
