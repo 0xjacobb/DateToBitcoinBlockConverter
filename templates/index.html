@@ -4,11 +4,13 @@
     <title>Date-time to Bitcoin Block Number Converter</title>
   </head>
   <body>
-    <form action = "https://datetime-converter-pro.herokuapp.com/result/result.html" method = "POST">
-   <!----<form action = "http://localhost:5000/result/result.html" method = "POST"></form>>-->
-
-       <p>Date <input type = "text" name = "date" /></p>
-       <p>Time <input type = "text" name = "time" /></p>
+    <form action = "http://localhost:5000/result" method = "POST">
+   <!----<form action = "http://localhost:5000/result/" method = "POST"></form>>-->
+   <!---- <form action = "https://datetime-converter-pro.herokuapp.com/result" method = "POST"></form> -->
+    <H3> PLEASE PROVIDE UTC TIME AND DATE INFORMATION</H3>
+        <p>Example: Date: 2020-05-29, Time: 16:42:00 results in UNIX: 1590763320 which is BLOCK: 632185 </p>
+       <p>Date <input type = "text" name = "date" placeholder="yyyy-mm--dd" /></p>
+       <p>Time <input type = "text" name = "time" placeholder="hh:mm:ss" /></p>
        <p><input type = "submit" value = "submit" /></p>
     </form>
  </body>

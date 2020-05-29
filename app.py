@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import converter
+import sys
 
 app = Flask(__name__)
 
@@ -11,11 +12,13 @@ def index():
 @app.route("/result", methods=['GET', 'POST'])
 def result():
     if request.method == 'POST':
-      result = request.form
+      input_datetime = request.form
       datetime_to_block = converter.DateConverter()
-      block_height = datetime_to_block.find_corresponding_block(1590659400)
+      unix_datetime = int(datetime_to_block.get_unix_datetime(input_datetime))
+      block_height = datetime_to_block.get_corresponding_block(unix_datetime)
+      datetime_back = datetime_to_block.get_backconvertet_datetime(unix_datetime)
 
-      return render_template("result.html", block_height = block_height)
+      return render_template("result.html", block_height = block_height, unix_datetime = unix_datetime, datetime_back = datetime_back)
     
     else:
         return redirect('index')
