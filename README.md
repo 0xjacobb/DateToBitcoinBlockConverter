@@ -60,3 +60,14 @@ For Win: ```pip install -r requirements.txt```
 For macOS: ```python3 app.py```   
 For Win: ```python app.py```
 
+# To Do
+- [x] First working code with test data
+- [ ] Implement various time zone support (get picked by user)
+- [ ] Implement database
+- [ ] Use data base for query the nearest block
+- [ ] Make full code running on Heroku
+- [ ] Refactoring and nice UI
+
+
+# Additional Information
+Good time to unix converter: [https://www.unixtime.de/](https://www.unixtime.de/)
