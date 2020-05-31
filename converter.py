@@ -6,7 +6,9 @@
 
 #-------------------------------------------------------------------------------
 import datetime
+from datetime import timedelta
 from pytz import timezone
+from pytz import UTC
 import pytz
 import csv
 
@@ -27,10 +29,7 @@ class DateConverter():
         return: checked datetime object in right format or FALSE 
         '''
         date = input_datetime.get('date')
-        print('--------SEPARATE DATE --------', date)
-
         time = input_datetime.get('time')
-        print('--------SEPARATE TIME --------', time)
 
         year,month,day = date.split('-')
         hours,minutes,seconds = time.split(':')
@@ -50,10 +49,26 @@ class DateConverter():
         '''
         # ASSUMPTION: datetime input from user is in UTC. 
         # Converting from local timezone to UTC is TO DO 
-        print('--------input_datetime --------', input_datetime)
-        print('--------RETURN AFTER CHECK--------', self.check_datetime_format(input_datetime))
+        print('--------RAW input_datetime --------', input_datetime)
+        print('--------CHECKED DATE TIME --------', self.check_datetime_format(input_datetime))
+        print('--------USER TIMEZONE SHIFT--------', input_datetime.get("user_timezone"))
+
         dt = self.check_datetime_format(input_datetime)
-        udt = dt.timestamp()
+        print('-------- DATE TIME EINGEGEBEN --------', dt)
+        
+        #negativ INT value! --> ASCHTUNG SITMMT WEGEN AUTOMATISCHER SOMMER WINTERZEIT TROTZDEM NICHT
+        naive_normalized_dt = dt + timedelta(hours=-int(input_datetime.get("user_timezone")))
+        print('-------- DATE TIME AUF UTC ANGEPASST (mit time shift) --------', naive_normalized_dt)
+
+        # make UTC-UNIX timestamp element 
+        # https://medium.com/swlh/making-sense-of-timezones-in-python-16d8ae210c1c
+        # Treat this time as being in the UTC timezone
+        aware_normalized_dt = timezone('UTC').localize(naive_normalized_dt)
+        print('-------- AWARE STAMP OF NORMALIZED DATE TIME --------', aware_normalized_dt)
+
+        #Convert to UNIX Time
+        udt = aware_normalized_dt.timestamp()
+        print('-------- UNIX DATE TIME --------', udt)
 
         if udt:
             return udt
@@ -66,13 +81,17 @@ class DateConverter():
         csv_file = csv.reader(open('block-data.csv'), delimiter=",")
         uxd = str(unix_datetime)
         for row in csv_file:
-            if uxd == row[0]:
-                return row[1]
+            if uxd == row[1]:
+                return row[0]
         return None
 
     def get_backconvertet_datetime(self, unix_datetime):
 
         return datetime.datetime.fromtimestamp(unix_datetime)
+
+    def get_actual_unix_timestamp(self):
+        #return (int(UTC.localize(datetime.datetime.utcnow())))
+        return None
 
 if __name__ == "__main__":
     date_time_object = DateConverter()

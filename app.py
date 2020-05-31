@@ -17,8 +17,10 @@ def result():
       unix_datetime = int(datetime_to_block.get_unix_datetime(input_datetime))
       block_height = datetime_to_block.get_corresponding_block(unix_datetime)
       datetime_back = datetime_to_block.get_backconvertet_datetime(unix_datetime)
+      #actual_unix_timestamp = datetime_to_block.get_actual_unix_timestamp()
+      actual_unix_timestamp = 0
 
-      return render_template("result.html", block_height = block_height, unix_datetime = unix_datetime, datetime_back = datetime_back)
+      return render_template("result.html", block_height = block_height, unix_datetime = unix_datetime, datetime_back = datetime_back, actual_unix_timestamp = actual_unix_timestamp)
     
     else:
         return redirect('index')
