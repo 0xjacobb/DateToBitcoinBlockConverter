@@ -60,16 +60,21 @@ For Win: ```pip install -r requirements.txt```
 For macOS: ```python3 app.py```   
 For Win: ```python app.py```
 
+# Example
+local time input **2009-01-24 00:26:57 (GMT +1: Zürich)** is the same like **2009-01-23 23:26:57 UTC**. The UTC time converter in UNIX is **1232753217**, which results in nearest block **1470**.
+
 # To Do
 - [x] First working code with test data
-- [ ] datetime conversion is not working correct (take local computer time instead of UTC)
-- [ ] Implement various time zone support (get picked by user)
-- [ ] Implement database
-- [ ] Use data base for query the nearest block
+- [x] datetime conversion is not working correct (take local computer time instead of UTC)
+- [x] Implement various time zone support (get picked by user)
+- [ ] Add one block after and one befor found block visible together with URL to blockexplorer
+- [ ] Nice UI and credits
+- [ ] Make auto-update CSV
 - [ ] Make full code running on Heroku
-- [ ] Refactoring and nice UI
+- [ ] Refactoring and implement easier timezone converting without summertime checkbox
+
 
 
 # Additional Information
-Good time to unix converter: [https://www.unixtime.de/](https://www.unixtime.de/)
+Good time to unix converter: [https://www.unixtime.de/](https://www.unixtime.de/)   
 Best Timestamp Converter Onoine [https://www.epochconverter.com](https://www.epochconverter.com)
