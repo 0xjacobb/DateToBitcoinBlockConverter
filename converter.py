@@ -23,7 +23,7 @@ class DateConverter():
     def __init__(self):
         print("--------- START DATE CONVERTER -----------\n")
 
-    def check_datetime_format(self, input_datetime):
+    def get_datetime(self, input_datetime):
         ''' check conventions of input datetime from user  
         input_datetime:  the key/value pairs from HTML post form
         return: checked datetime object in right format or FALSE 
@@ -37,27 +37,27 @@ class DateConverter():
         try:
             # https://docs.python.org/3/library/datetime.html#datetime.datetime
             dt= datetime.datetime(int(year),int(month),int(day),int(hours),int(minutes),int(seconds))
+            print('-------- DATE TIME EINGEGEBEN --------', dt)
             return dt
 
         except ValueError:
             return False
 
-    def get_unix_datetime(self, input_datetime):
-        ''' convert input datetime to unix, which is the same format as Bitcoin block time 
-        input_datetime:  the key/value pairs from HTML post form
-        return: unix timestamp
-        '''
-        # ASSUMPTION: datetime input from user is in UTC. 
-        # Converting from local timezone to UTC is TO DO 
-        print('--------RAW input_datetime --------', input_datetime)
-        print('--------CHECKED DATE TIME --------', self.check_datetime_format(input_datetime))
-        print('--------USER TIMEZONE SHIFT--------', input_datetime.get("user_timezone"))
+    def get_datetime_UTC(self, input_datetime):
+        dt = self.get_datetime(input_datetime)
 
-        dt = self.check_datetime_format(input_datetime)
-        print('-------- DATE TIME EINGEGEBEN --------', dt)
+        print('--------USER TIMEZONE SHIFT--------', input_datetime.get("user_timezone"))
+        print('-------- SOMMERZEIT AKTIV?--------', input_datetime.get("type_time"))
         
+        timeshift = 0
+        if input_datetime.get("type_time") == '1':
+            timeshift = int(input_datetime.get("user_timezone")) + 1
+        else:
+            timeshift = int(input_datetime.get("user_timezone"))
+
+        print('-------- TIMESHIFT --------', timeshift)
         #negativ INT value! --> ASCHTUNG SITMMT WEGEN AUTOMATISCHER SOMMER WINTERZEIT TROTZDEM NICHT
-        naive_normalized_dt = dt + timedelta(hours=-int(input_datetime.get("user_timezone")))
+        naive_normalized_dt = dt + timedelta(hours=-int(timeshift))
         print('-------- DATE TIME AUF UTC ANGEPASST (mit time shift) --------', naive_normalized_dt)
 
         # make UTC-UNIX timestamp element 
@@ -66,24 +66,33 @@ class DateConverter():
         aware_normalized_dt = timezone('UTC').localize(naive_normalized_dt)
         print('-------- AWARE STAMP OF NORMALIZED DATE TIME --------', aware_normalized_dt)
 
+        return aware_normalized_dt
+
+    def get_unix_datetime(self, input_datetime):
+        ''' convert input datetime to unix, which is the same format as Bitcoin block time 
+        input_datetime:  the key/value pairs from HTML post form
+        return: unix timestamp
+        '''
+        print('--------RAW input_datetime --------', input_datetime)
+
+        #Convert to UTC Time
+        dt_UTC =self.get_datetime_UTC(input_datetime)
         #Convert to UNIX Time
-        udt = aware_normalized_dt.timestamp()
+        udt = dt_UTC.timestamp()
         print('-------- UNIX DATE TIME --------', udt)
 
         if udt:
             return udt
         else:
             return False
+        
 
     def get_corresponding_block(self, unix_datetime):
         ''' give back the closest block to the UTC datatime from user '''
-        # Example: 1590492420 seconds = 2020-05-26 13:27:00
-        csv_file = csv.reader(open('block-data.csv'), delimiter=",")
-        uxd = str(unix_datetime)
-        for row in csv_file:
-            if uxd == row[1]:
-                return row[0]
-        return None
+        # Example [block_height, time_stamp]:  # 1469,1232752933 # 1470,1232753217
+        data = list(csv.reader(open('block-data.csv')))[1:]
+        result = min(data, key=lambda x:abs(int(x[-1])-unix_datetime))
+        return result[0]
 
     def get_backconvertet_datetime(self, unix_datetime):
 
@@ -95,3 +104,5 @@ class DateConverter():
 
 if __name__ == "__main__":
     date_time_object = DateConverter()
+    date_time_object.get_corresponding_block(1232753076)
+   
