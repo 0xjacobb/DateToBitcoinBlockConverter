@@ -1,10 +1,14 @@
 <!doctype html>
 <html>
    <body>
-        <p> <b>Your Datetime Input: </b> {{ user_input_datetime }} </p>
-        <p> <b>Your Datetime Input (in UTC): </b> {{ user_input_datetime_UTC }} </p>
-        <p> <b>Your Datetime in Unix: </b> {{ unix_datetime }} </p>
-        <p> <b>Actual Unix Time Stamp: </b> {{ actual_unix_timestamp }} </p>
-        <p> <b>BLOCK HEIGHT: </b> {{ block_height }} </p>
+        <p> <b>Your Input: </b> {{ user_input_datetime }} </p>
+        <p> <b>Your Input (in UTC): </b> {{ user_input_datetime_UTC }} </p>
+        <p> <b>Your Input (in UNIX time): </b> {{ unix_datetime }} </p>
+        <p> <b>BLOCK HEIGHT: </b> {{ block_height }} 
+        <ul>
+            <li>Your Block: <a href="{{ link_mainblock }}", target="_blank">{{ link_mainblock  }}</a></li>
+            <li>One Block after: <a href="{{ link_next_block }}", target="_blank">{{ link_next_block  }}</a></li>
+        </ul>  
+        </p>
    </body>
 </html>

@@ -20,16 +20,16 @@ def result():
 
       unix_datetime = int(datetime_to_block.get_unix_datetime(input_datetime))
       block_height = datetime_to_block.get_corresponding_block(unix_datetime)
-      
-      #datetime_back = datetime_to_block.get_backconvertet_datetime(unix_datetime)
-      #actual_unix_timestamp = datetime_to_block.get_actual_unix_timestamp()
-      actual_unix_timestamp = 0
+
+      link_mainblock = 'https://www.blockchain.com/btc/block/'+ block_height
+      link_next_block = 'https://www.blockchain.com/btc/block/'+ str(int(block_height) + 1)
 
       return render_template("result.html", user_input_datetime = user_input_datetime,
                                             user_input_datetime_UTC = user_input_datetime_UTC,
                                             unix_datetime = unix_datetime, 
-                                            actual_unix_timestamp = actual_unix_timestamp,
-                                            block_height = block_height)
+                                            block_height = block_height,
+                                            link_mainblock = link_mainblock,
+                                            link_next_block = link_next_block)
     
     else:
         return redirect('index')

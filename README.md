@@ -67,7 +67,7 @@ local time input **2009-01-24 00:26:57 (GMT +1: Zürich)** is the same like **20
 - [x] First working code with test data
 - [x] datetime conversion is not working correct (take local computer time instead of UTC)
 - [x] Implement various time zone support (get picked by user)
-- [ ] Add one block after and one befor found block visible together with URL to blockexplorer
+- [x] Add one block after and one befor found block visible together with URL to blockexplorer
 - [ ] Nice UI and credits
 - [ ] Make auto-update CSV
 - [ ] Make full code running on Heroku

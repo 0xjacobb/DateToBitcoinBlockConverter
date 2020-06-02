@@ -8,6 +8,12 @@
    <!----<form action = "http://localhost:5000/result" method = "POST"></form>>-->
    <!---- <form action = "https://datetime-converter-pro.herokuapp.com/result" method = "POST"></form> -->
     <H3> PLEASE PROVIDE GMT TIME AND DATE INFORMATION</H3>
+       <p>Example:
+        <ul>
+          <li>2020-05-11 20:15:54, GMT+1, Summertime = YES gives block height: 629999</li>
+          <li>2020-05-11 20:15:54, GMT+1, Summertime = NO gives block height: 630000 --> WRONG</li>
+      </ul>  
+       </p>
        <p>Date <input type = "text" name = "date" placeholder="yyyy-mm--dd" /></p>
        <p>Your local Time <input type = "text" name = "time" placeholder="hh:mm:ss" />
 
@@ -40,8 +46,10 @@
         </select>
       </p>
       <p><input type="checkbox" id="type_time" name="type_time" value="1">
-        <label for="type_time"> Summertime YES/NO?</label><br></p>
+        <label for="type_time"> Summertime YES</label><br></p>
        <p><input type = "submit" value = "submit" /></p>
+       <p><a href="https://www.epochconverter.com", target="_blank">https://www.epochconverter.com</a></p>
+       <p><a href="https://github.com/0xjacobb/DateToBitcoinBlockConverter", target="_blank">https://github.com/0xjacobb/DateToBitcoinBlockConverter</a></p>
     </form>
  </body>
 </html>
