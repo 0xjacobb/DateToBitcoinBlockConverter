@@ -1,3 +1,8 @@
+#Author: Marc Steiner
+#Date of birth: 26.May.2020
+#Further info:
+
+#-------------------------------------------------------------------------------
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import converter
 import sys
