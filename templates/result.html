@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
    <body>
+        <p> <b>Latest Data Update (your local time not UTC): </b> {{ latest_update }} </p>
         <p> <b>Your Input: </b> {{ user_input_datetime }} </p>
         <p> <b>Your Input (in UTC): </b> {{ user_input_datetime_UTC }} </p>
         <p> <b>Your Input (in UNIX time): </b> {{ unix_datetime }} </p>
@@ -8,6 +9,7 @@
         <ul>
             <li>Your Block: <a href="{{ link_mainblock }}", target="_blank">{{ link_mainblock  }}</a></li>
             <li>One Block after: <a href="{{ link_next_block }}", target="_blank">{{ link_next_block  }}</a></li>
+            <li>Good time converter: <a href="https://www.epochconverter.com", target="_blank">https://www.epochconverter.com</a></li>
         </ul>  
         </p>
    </body>

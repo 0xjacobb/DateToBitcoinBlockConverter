@@ -15,10 +15,12 @@ The thread describes another issue with the "correct time conversion": [What for
 
 This code does not care about any specific transactions in a block, but more when the block is created.
 
-# Status
+## Status
 Setting up project
 
-# Project Structure
+## Project Structure
+A local Bitcoin node running on a RaspberryPi updates once a day (00:00h) the CSV file via cron job. The RaspberryPi merges automatically the update into the Githup repo which updates the code on Heroku.
+
 ```bash
 DateToBitcoinBlockConverter
     ├── templates                      # flask searching HTML files in this folder   
@@ -28,10 +30,13 @@ DateToBitcoinBlockConverter
     ├── app.py                         # Flask Web-App   
     ├── block-data.csv                 # file which contains only time_stamp and block_height of all blocks
     ├── converter.py                   # Main file which input and output for web-app
+    ├── cronjob_node.sh                # cron job file on local rapberrypi node, which updates CSV file
+    ├── mediantime.sh                  # File to get first block data for the CSV file (running once)
     ├── Procfile                       # process file needed for Heroku deployment
     ├── README.md   
     ├── requirements.txt               # all needed dependencies created via: ' pip freeze > requirements.txt '
     ├── runtime.txt                    # define python version for Heroku
+    ├── update_csv.sh                  # fetches the newest blocks from a local Bitcoin node via bitcoin-cli. Print out only newest data
 ```
 
 ## Running code local on your Mac
@@ -60,10 +65,10 @@ For Win: ```pip install -r requirements.txt```
 For macOS: ```python3 app.py```   
 For Win: ```python app.py```
 
-# Example
+## Example
 local time input **2009-01-24 00:26:57 (GMT +1: Zürich)** is the same like **2009-01-23 23:26:57 UTC**. The UTC time converter in UNIX is **1232753217**, which results in nearest block **1470**.
 
-# To Do
+## To Do
 - [x] First working code with test data
 - [x] datetime conversion is not working correct (take local computer time instead of UTC)
 - [x] Implement various time zone support (get picked by user)
@@ -75,6 +80,6 @@ local time input **2009-01-24 00:26:57 (GMT +1: Zürich)** is the same like **20
 
 
 
-# Additional Information
+## Additional Information
 Good time to unix converter: [https://www.unixtime.de/](https://www.unixtime.de/)   
 Best Timestamp Converter Onoine [https://www.epochconverter.com](https://www.epochconverter.com)

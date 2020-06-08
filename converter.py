@@ -92,15 +92,23 @@ class DateConverter():
         # Example [block_height, time_stamp]:  # 1469,1232752933 # 1470,1232753217
         data = list(csv.reader(open('block-data.csv')))[1:]
         result = min(data, key=lambda x:abs(int(x[-1])-unix_datetime))
+        
         return result[0]
 
     def get_backconvertet_datetime(self, unix_datetime):
-
+        ''' give back the local machine time based on UNIX'''
         return datetime.datetime.fromtimestamp(unix_datetime)
 
     def get_actual_unix_timestamp(self):
         #return (int(UTC.localize(datetime.datetime.utcnow())))
         return None
+
+    def get_latest_block_time_CSV(self):
+        all_lines = list(csv.reader(open('block-data.csv')))[1:]
+        last_line = all_lines[-1]
+        latest_update = self.get_backconvertet_datetime(int(last_line[1]))
+        
+        return latest_update
 
 if __name__ == "__main__":
     date_time_object = DateConverter()
