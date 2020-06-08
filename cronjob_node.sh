@@ -7,6 +7,7 @@
 # Authorisation: sudo chmod +x ./cronjob_node.sh
 #-------------------------------------------------------------------------------
 
+git pull
 ./update_csv.sh >> block-data.csv
 git add *
 git commit -m "update CSV file - Bitcoin node"
