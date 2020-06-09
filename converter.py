@@ -16,12 +16,11 @@ class DateConverter():
     '''
     DateConverter
     Class for convert a UTC time into nearest Bitcoin block number
-
     '''
 
     # Constructor
     def __init__(self):
-        print("--------- START DATE CONVERTER -----------\n")
+        print("Converer started")
 
     def get_datetime(self, input_datetime):
         ''' check conventions of input datetime from user  
@@ -37,34 +36,25 @@ class DateConverter():
         try:
             # https://docs.python.org/3/library/datetime.html#datetime.datetime
             dt= datetime.datetime(int(year),int(month),int(day),int(hours),int(minutes),int(seconds))
-            print('-------- DATE TIME EINGEGEBEN --------', dt)
             return dt
 
         except ValueError:
             return False
 
     def get_datetime_UTC(self, input_datetime):
-        dt = self.get_datetime(input_datetime)
-
-        print('--------USER TIMEZONE SHIFT--------', input_datetime.get("user_timezone"))
-        print('-------- SOMMERZEIT AKTIV?--------', input_datetime.get("type_time"))
-        
+        dt = self.get_datetime(input_datetime)       
         timeshift = 0
         if input_datetime.get("type_time") == '1':
             timeshift = int(input_datetime.get("user_timezone")) + 1
         else:
             timeshift = int(input_datetime.get("user_timezone"))
 
-        print('-------- TIMESHIFT --------', timeshift)
-        #negativ INT value! --> ASCHTUNG SITMMT WEGEN AUTOMATISCHER SOMMER WINTERZEIT TROTZDEM NICHT
         naive_normalized_dt = dt + timedelta(hours=-int(timeshift))
-        print('-------- DATE TIME AUF UTC ANGEPASST (mit time shift) --------', naive_normalized_dt)
-
+ 
         # make UTC-UNIX timestamp element 
         # https://medium.com/swlh/making-sense-of-timezones-in-python-16d8ae210c1c
         # Treat this time as being in the UTC timezone
         aware_normalized_dt = timezone('UTC').localize(naive_normalized_dt)
-        print('-------- AWARE STAMP OF NORMALIZED DATE TIME --------', aware_normalized_dt)
 
         return aware_normalized_dt
 
@@ -73,13 +63,10 @@ class DateConverter():
         input_datetime:  the key/value pairs from HTML post form
         return: unix timestamp
         '''
-        print('--------RAW input_datetime --------', input_datetime)
-
         #Convert to UTC Time
         dt_UTC =self.get_datetime_UTC(input_datetime)
         #Convert to UNIX Time
         udt = dt_UTC.timestamp()
-        print('-------- UNIX DATE TIME --------', udt)
 
         if udt:
             return udt

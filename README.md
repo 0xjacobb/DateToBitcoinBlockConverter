@@ -19,7 +19,7 @@ This code does not care about any specific transactions in a block, but more whe
 Setting up project
 
 ## Project Structure
-A local Bitcoin node running on a RaspberryPi updates once a day (00:00h) the CSV file via cron job. The RaspberryPi merges automatically the update into the Githup repo which updates the code on Heroku.
+A local Bitcoin node running on a RaspberryPi updates once a day (00:00h) the CSV file via cron job. The RaspberryPi merges automatically the update into the Githup repo that updates the code on Heroku.
 
 ```bash
 DateToBitcoinBlockConverter
@@ -28,8 +28,8 @@ DateToBitcoinBlockConverter
     │   └── result.html                # shows the corresponding block height  
     ├── .gitignore                     # not tracked files by GIT  
     ├── app.py                         # Flask Web-App   
-    ├── block-data.csv                 # file which contains only time_stamp and block_height of all blocks
-    ├── converter.py                   # Main file which input and output for web-app
+    ├── block-data.csv                 # file that contains only time_stamp and block_height of all blocks
+    ├── converter.py                   # Main file for input and output for web-app
     ├── cronjob_node.sh                # cron job file on local rapberrypi node, which updates CSV file
     ├── mediantime.sh                  # File to get first block data for the CSV file (running once)
     ├── Procfile                       # process file needed for Heroku deployment
@@ -80,6 +80,8 @@ local time input **2009-01-24 00:26:57 (GMT +1: Zürich)** is the same like **20
 
 
 
-## Additional Information
-Good time to unix converter: [https://www.unixtime.de/](https://www.unixtime.de/)   
-Best Timestamp Converter Onoine [https://www.epochconverter.com](https://www.epochconverter.com)
+## Additional Information and learnings
+- Good time to unix converter: [https://www.unixtime.de/](https://www.unixtime.de/)   
+- Best Timestamp Converter Onoine [https://www.epochconverter.com](https://www.epochconverter.com)   
+- SSH Key setup between RaspberryPi and Github: [This is a good point to start](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh), but be aware, that copy and paste of the public key from RaspberryPi to Github is not that easy. I've found that [article](https://www.digitalocean.com/community/questions/copy-ssh-key-to-clipboard), which shows a great workaround ```cat ~/.ssh/id_rsa.pub ```   
+- Setting up a cron job was easy. In this [article](https://www.raspberrypi.org/documentation/linux/usage/cron.md) you will find the example ```0 0 * * *  /home/pi/backup.sh```. Be aware that this is correct: ```0 0 * * *  bash /home/pi/backup.sh``` (bash and full-path is needed). After entering in **nano** editor, quit with ```CTRL + X``` and ```Y``` and ```ENTER```
