@@ -8,7 +8,7 @@
 #-------------------------------------------------------------------------------
 
 git pull
-./update_csv.sh >> block-data.csv
+/home/DateToBitcoinBlockConverter/update_csv.sh >> /home/DateToBitcoinBlockConverter/block-data.csv
 git add *
 git commit -m "update CSV file - Bitcoin node"
 git push origin master
