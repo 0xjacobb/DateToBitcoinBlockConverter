@@ -8,9 +8,9 @@
 #-------------------------------------------------------------------------------
 
 git pull
-/home/DateToBitcoinBlockConverter/update_csv.sh >> /home/DateToBitcoinBlockConverter/block-data.csv
+/home/DateToBitcoinBlockConverter/DateToBitcoinBlockConverter/update_csv.sh >> /home/DateToBitcoinBlockConverter/DateToBitcoinBlockConverter/block-data.csv
 git add *
-git commit -m "update CSV file - Bitcoin node"
+git commit -m "update CSV file - RaspiBlitz"
 git push origin master
 
 
