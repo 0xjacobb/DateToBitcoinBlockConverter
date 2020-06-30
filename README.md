@@ -31,7 +31,7 @@ DateToBitcoinBlockConverter
     ├── block-data.csv                 # file that contains only time_stamp and block_height of all blocks
     ├── converter.py                   # Main file for input and output for web-app
     ├── cronjob_node.sh                # cron job file on local rapberrypi node, which updates CSV file
-    ├── mediantime.sh                  # File to get first block data for the CSV file (running once)
+    ├── blocktime.sh                   # File to get first block data for the CSV file (running once) TIME = Miner time (date of birth)
     ├── Procfile                       # process file needed for Heroku deployment
     ├── README.md   
     ├── requirements.txt               # all needed dependencies created via: ' pip freeze > requirements.txt '
