@@ -9,6 +9,6 @@ START=$((LAST + 1))
 
 for (( CURRENT=$START; CURRENT<=$HEIGHT; CURRENT++ ))
 do
-    MEDIANTIME=$(bitcoin-cli getblockhash $CURRENT | xargs bitcoin-cli getblockheader | jq .time)
-    echo "$CURRENT,$MEDIANTIME"
+    TIME=$(bitcoin-cli getblockhash $CURRENT | xargs bitcoin-cli getblockheader | jq .time)
+    echo "$CURRENT,$TIME"
 done
