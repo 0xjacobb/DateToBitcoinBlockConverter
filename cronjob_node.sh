@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #Author: Marc Steiner
 #Date of birth: 08.June.2020
 #Further info:
@@ -7,6 +6,13 @@
 # Authorisation: sudo chmod +x ./cronjob_node.sh
 #-------------------------------------------------------------------------------
 
+# log stdout and stderr to two different files
+exec >>/var/log/looog.log 2>>/var/log/looog.err.log
+
+# ...and log every command we try to execute to stderr (aka looog.err.log)
+set -x
+
+cd /home/DateToBitcoinBlockConverter/DateToBitcoinBlockConverter/
 git pull
 /home/DateToBitcoinBlockConverter/DateToBitcoinBlockConverter/update_csv.sh >> /home/DateToBitcoinBlockConverter/DateToBitcoinBlockConverter/block-data.csv
 git add *
