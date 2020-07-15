@@ -1,4 +1,5 @@
 #!/bin/bash
+# TEST
 #Author: Marc Steiner
 #Date of birth: 08.June.2020
 #Further info:
