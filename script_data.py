@@ -1,3 +1,6 @@
 import subprocess
+import time
 
-subprocess.call(['./cronjob_node.sh'])
+while True:
+    subprocess.call(['./cronjob_node.sh'])
+    time.sleep(3600)
