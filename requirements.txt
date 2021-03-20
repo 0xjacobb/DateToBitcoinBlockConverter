@@ -6,7 +6,7 @@ Flask-Bootstrap==3.3.7.1
 Flask-Datepicker==0.12
 gunicorn==20.0.4
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 pytz==2020.1
 static-parameters==0.4
